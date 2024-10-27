@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <meta name="viewport" content="width:device-width; initial-scale:1.0">
+        <style>
+            @font-face {
+                font-family: 'New Rodin';
+                src: url('FOT-NewRodin Pro B.otf');
+            }
+
+            .board-container {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .team-container-blue {
+                height: 5vh;
+                display: flex;
+                background: linear-gradient(90deg,
+                    #3363ff,
+                    #3743bb,
+                    #2c267c,
+                    #190e44,
+                    #3363ff
+                );
+                border-radius: 1vw;
+                background-size: 200% 200%;
+                padding: 0.5vw;
+                align-items: center;
+                flex-basis: 40vw;
+            }
+
+            .team-container-red {
+                height: 5vh;
+                display: flex;
+                background: linear-gradient(90deg,
+                    #de1b22,
+                    #ab0d1b,
+                    #7b0312,
+                    #4d0003,
+                    #de1b22
+                );
+                border-radius: 1vw;
+                background-size: 200% 200%;
+                padding: 0.5vw;
+                align-items: center;
+                flex-basis: 40vw;
+            }
+
+            .team-score {
+                display: flex;
+                height: 100%;
+                flex-grow: 1;
+                border-radius: 1vw;
+                margin-top: 0.5vh;
+                margin-bottom: 0.5vw;
+                background: linear-gradient(45deg, #0a0a0a 25%, transparent 25%), 
+                linear-gradient(-45deg, #0a0a0a 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #0a0a0a 75%), 
+                linear-gradient(-45deg, #202020 75%, #0a0a0a 75%);
+                background-size: 20px 20px;
+                background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+                color: #ffffff;
+                vertical-align: middle;
+                align-items: center;
+                font-family: 'New Rodin';
+                font-size: 12;
+            }
+
+            .team-initials {
+                font-size: 0.65rem;
+                padding: 5%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="board-container">
+            <div class="team-container-blue">
+                <div class="team-score" id="score-left">
+                    <div class="team-initials">LHS</div>
+                    <div class="team-name">Ragnarok Racers</div>
+                </div>
+            </div>
+            <div class="team-container-red">
+                <div class="team-score" id="score-right">
+                    <div class="team-initials">CMD</div>
+                    <div class="team-name">Trinity</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
