@@ -8,12 +8,13 @@
             }
 
             .board-container {
-                display: flex;
-                flex-direction: row;
+                padding-left: 2vw;
+                padding-right: 5vw;
             }
 
             .team-container-blue {
-                height: 5vh;
+                height: 5.5vh;
+                width: 42.5vw;
                 display: flex;
                 background: linear-gradient(90deg,
                     #3363ff,
@@ -22,15 +23,17 @@
                     #190e44,
                     #3363ff
                 );
-                border-radius: 1vw;
+                border-radius: 0.5vw;
+                padding: 0.2vw;
+                left: 50vw;
                 background-size: 200% 200%;
-                padding: 0.5vw;
                 align-items: center;
-                flex-basis: 40vw;
+                float: left;
             }
 
             .team-container-red {
-                height: 5vh;
+                height: 5.5vh;
+                width: 42.5vw;
                 display: flex;
                 background: linear-gradient(90deg,
                     #de1b22,
@@ -39,20 +42,18 @@
                     #4d0003,
                     #de1b22
                 );
-                border-radius: 1vw;
-                background-size: 200% 200%;
-                padding: 0.5vw;
-                align-items: center;
+                border-radius: 0.5vw;
+                padding: 0.2vw;
+                background-size: 200% 200%;                align-items: center;
                 flex-basis: 40vw;
+                float: right;
             }
 
             .team-score {
                 display: flex;
-                height: 100%;
+                max-height: 80%;
                 flex-grow: 1;
-                border-radius: 1vw;
-                margin-top: 0.5vh;
-                margin-bottom: 0.5vw;
+                border-radius: 0.4vw;
                 background: linear-gradient(45deg, #0a0a0a 25%, transparent 25%), 
                 linear-gradient(-45deg, #0a0a0a 25%, transparent 25%), 
                 linear-gradient(45deg, transparent 75%, #0a0a0a 75%), 
@@ -87,6 +88,6 @@
                     <div class="team-name">Trinity</div>
                 </div>
             </div>
-        </div>
+        <div>
     </body>
 </html>
