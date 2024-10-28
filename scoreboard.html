@@ -7,46 +7,80 @@
                 src: url('FOT-NewRodin Pro B.otf');
             }
 
+            @property --angle {
+                syntax: "<angle>";
+                initial-value: 0deg;
+                inherits: false;
+            }
+
+            @keyframes spin {
+                0% {
+                    --angle: 0deg;
+                }
+                100% {
+                    --angle: 360deg;
+                }
+            }
+
             .board-container {
                 padding-left: 3vw;
                 padding-right: 3vw;
             }
 
-            .team-container-blue {
-                height: 5.5vh;
-                width: 42.5vw;
-                display: flex;
-                background: linear-gradient(90deg,
+            .team-container-blue::before {
+                content: '';
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                background: conic-gradient(from var(--angle),
                     #3363ff,
                     #3743bb,
                     #2c267c,
                     #190e44,
                     #3363ff
                 );
-                border-radius: 0.5vw;
+                z-index: -1;
                 padding: 0.2vw;
-                left: 50vw;
-                background-size: 200% 200%;
-                align-items: center;
-                float: left;
+                border-radius: 0.5vw;
+                animation: 5s spin linear infinite;
             }
 
-            .team-container-red {
+            .team-container-blue {
                 height: 5.5vh;
                 width: 42.5vw;
+                position: relative;
+                align-items: center;
                 display: flex;
-                background: linear-gradient(90deg,
+                justify-content: center;
+                float:left;
+            }
+
+            .team-container-red::before {
+                content: '';
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                background: conic-gradient(from var(--angle),
                     #de1b22,
                     #ab0d1b,
                     #7b0312,
                     #4d0003,
                     #de1b22
                 );
-                border-radius: 0.5vw;
+                z-index: -1;
                 padding: 0.2vw;
-                background-size: 200% 200%;                align-items: center;
-                flex-basis: 40vw;
-                float: right;
+                border-radius: 0.5vw;
+                animation: 5s spin linear infinite;
+            }
+
+            .team-container-red {
+                height: 5.5vh;
+                width: 42.5vw;
+                position: relative;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                float:right;
             }
 
             .team-score {
@@ -83,9 +117,9 @@
                 </div>
             </div>
             <div class="team-container-red">
-                <div class="team-score" id="score-right">
-                    <div class="team-initials">CMD</div>
-                    <div class="team-name">Trinity</div>
+                <div class="team-score" id="score-left">
+                    <div class="team-initials">LHS</div>
+                    <div class="team-name">Vahalla Vrommers</div>
                 </div>
             </div>
         <div>
