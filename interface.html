@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #1F1F1F;
+            }
+            input {
+                background-color: #2F2F2F;
+                border: none;
+                color: white;
+                margin: 1vh;
+            }
+
+            .container {
+                display: flex;
+                width: 100vw;
+                justify-content: center;
+                align-text: center;
+            }
+
+            #Team-1-Info > h3 {
+                color: #d6292a;
+            }
+
+            #Team-2-Info > h3 {
+                color: #3885c7;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div id="Team-1-Info">
+                <h3>Team 1</h3>
+                <input type="text" placeholder="Team Initials (3 char. max)" maxlength="3">
+                <input type="text" placeholder="Team Name">
+                <input placeholder='Point Value' class='pointNum' type="number" min='0'>
+            </div>
+            <div id="Team-2-Info">
+                <h3>Team 2</h3>
+                <input type="text" placeholder="Team Initials (3 char. max)" maxlength="3">
+                <input type="text" placeholder="Team Name">
+                <input placeholder='Point Value' class='pointNum' type="number" min='0'>
+            </div>
+        </div>
+        <div>
+            <input type='button' value='UPDATE'>
+        <div>
+    </body>
+</html>
