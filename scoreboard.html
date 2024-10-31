@@ -27,35 +27,7 @@
                 padding-right: 3vw;
             }
 
-            .team-container-blue::before {
-                content: '';
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                background: conic-gradient(from var(--angle),
-                    #3363ff,
-                    #3743bb,
-                    #2c267c,
-                    #190e44,
-                    #3363ff
-                );
-                z-index: -1;
-                padding: 0.2vw;
-                border-radius: 0.5vw;
-                animation: 5s spin linear infinite;
-            }
-
-            .team-container-blue {
-                height: 5.5vh;
-                width: 42.5vw;
-                position: relative;
-                align-items: center;
-                display: flex;
-                justify-content: center;
-                float:left;
-            }
-
-            .team-container-red::before {
+            .team-container-left::before {
                 content: '';
                 height: 100%;
                 width: 100%;
@@ -73,7 +45,35 @@
                 animation: 5s spin linear infinite;
             }
 
-            .team-container-red {
+            .team-container-left {
+                height: 5.5vh;
+                width: 42.5vw;
+                position: relative;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                float:left;
+            }
+
+            .team-container-right::before {
+                content: '';
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                background: conic-gradient(from var(--angle),
+                    #3363ff,
+                    #3743bb,
+                    #2c267c,
+                    #190e44,
+                    #3363ff
+                );
+                z-index: -1;
+                padding: 0.2vw;
+                border-radius: 0.5vw;
+                animation: 5s spin linear infinite;
+            }
+
+            .team-container-right {
                 height: 5.5vh;
                 width: 42.5vw;
                 position: relative;
@@ -110,13 +110,13 @@
     </head>
     <body>
         <div class="board-container">
-            <div class="team-container-blue">
+            <div class="team-container-left">
                 <div class="team-score">
                     <div class="team-initials">LHS</div>
                     <div class="team-name">Ragnarok Racers</div>
                 </div>
             </div>
-            <div class="team-container-red">
+            <div class="team-container-right">
                 <div class="team-score">
                     <div class="team-initials">LHS</div>
                     <div class="team-name">Vahalla Vrommers</div>
