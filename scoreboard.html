@@ -21,16 +21,18 @@
                     --angle: 360deg;
                 }
             }
-
-            .board-container {
-                padding-left: 3vw;
-                padding-right: 3vw;
+            
+            #board-container {
+                margin: 0 auto;
+                text-align: center;
+                display: flex;
+                justify-content: center;
             }
 
             .team-container-left::before {
                 content: '';
-                height: 100%;
-                width: 100%;
+                height: 150%;
+                width: 150%;
                 position: absolute;
                 background: conic-gradient(from var(--angle),
                     #de1b22,
@@ -40,25 +42,24 @@
                     #de1b22
                 );
                 z-index: -1;
-                padding: 0.2vw;
-                border-radius: 0.5vw;
+                top: -25%;
+                left: -25%;
                 animation: 5s spin linear infinite;
             }
 
             .team-container-left {
                 height: 5.5vh;
-                width: 42.5vw;
+                width: 35vw;
                 position: relative;
                 align-items: center;
-                display: flex;
                 justify-content: center;
-                float:left;
+                overflow: hidden;
             }
 
             .team-container-right::before {
                 content: '';
-                height: 100%;
-                width: 100%;
+                height: 150%;
+                width: 150%;
                 position: absolute;
                 background: conic-gradient(from var(--angle),
                     #3363ff,
@@ -68,26 +69,26 @@
                     #3363ff
                 );
                 z-index: -1;
-                padding: 0.2vw;
-                border-radius: 0.5vw;
+                top: -25%;
+                left: -25%;
                 animation: 5s spin linear infinite;
             }
 
             .team-container-right {
                 height: 5.5vh;
-                width: 42.5vw;
+                width: 35vw;
                 position: relative;
                 align-items: center;
-                display: flex;
                 justify-content: center;
-                float:right;
+                overflow: hidden;
             }
 
             .team-score {
+                position: absolute;
                 display: flex;
-                max-height: 80%;
-                flex-grow: 1;
-                border-radius: 0.4vw;
+                height: 80%;
+                width: 100%;
+                top: 10%;
                 background: linear-gradient(45deg, #0a0a0a 25%, transparent 25%), 
                 linear-gradient(-45deg, #0a0a0a 25%, transparent 25%), 
                 linear-gradient(45deg, transparent 75%, #0a0a0a 75%), 
@@ -97,31 +98,54 @@
                 color: #ffffff;
                 vertical-align: middle;
                 align-items: center;
+                text-align: center;
                 font-family: 'New Rodin';
                 font-size: 12;
             }
+            
+            .team-score > * {
+                display: inline-block;
+            }
 
             .team-initials {
-                font-size: 0.65rem;
-                padding: 5%;
+                font-size: 0.85rem;
+                padding-left: 2.5%;
+                padding-right: 2.5%;
+                width: 10%;
+            }
+            
+            .team-name {
+                font-size: 0.95rem;
+                padding-left: 2.5%;
+                padding-right: 2.5%;
+                width: 55%;
+            }
+            
+            .score {
+                padding-left: 2.5%;
+                padding-right: 2.5%;
+                width: 20%;
             }
 
         </style>
     </head>
     <body>
-        <div class="board-container">
+        <div id=board-container>
             <div class="team-container-left">
                 <div class="team-score">
-                    <div class="team-initials">LHS</div>
-                    <div class="team-name">Ragnarok Racers</div>
+                        <div class="team-initials" id='IL'>LHS</div>
+                        <div class="team-name" id = 'NL'>Vahalla Vrommers</div>
+                        <div class='score' id = 'SL'>
+                        0</div>
                 </div>
             </div>
             <div class="team-container-right">
                 <div class="team-score">
-                    <div class="team-initials">LHS</div>
-                    <div class="team-name">Vahalla Vrommers</div>
+                    <div class='score' id = 'SR'>0</div>
+                    <div class="team-name" id='NR'>Vahalla Vrommers</div>
+                    <div class="team-initials" id='IL'>LHS</div>
                 </div>
             </div>
-        <div>
+        </div>
     </body>
 </html>
