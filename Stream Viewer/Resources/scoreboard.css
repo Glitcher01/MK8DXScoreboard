@@ -1,0 +1,176 @@
+@font-face {
+    font-family: 'New Rodin';
+    src: url('FOT-NewRodin Pro B.otf');
+}
+
+:root {
+    --board_width: 30vw;
+}
+
+.board-container {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1vh;
+}
+
+#board-container-left, #board-container-right {
+    display: flex;
+    flex-direction: column;
+}
+
+#scoreboard-left::before {
+    content: '';
+    height: 150%;
+    width: 150%;
+    position: absolute;
+    background: #de1b22;
+    z-index: -1;
+    top: -25%;
+    left: -25%;
+}
+
+#scoreboard-left {
+    height: 5.5vh;
+    width: var(--board_width);
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#scoreboard-right::before {
+    content: '';
+    height: 150%;
+    width: 150%;
+    position: absolute;
+    background: #3363ff;
+    z-index: -1;
+    top: -25%;
+    left: -25%;
+}
+
+#scoreboard-right {
+    height: 5.5vh;
+    width: var(--board_width);
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.team-score {
+    position: absolute;
+    display: flex;
+    height: 80%;
+    width: 100%;
+    top: 10%;
+    background: linear-gradient(45deg, #0a0a0a 25%, transparent 25%), 
+    linear-gradient(-45deg, #0a0a0a 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #0a0a0a 75%), 
+    linear-gradient(-45deg, #202020 75%, #0a0a0a 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    color: #ffffff;
+    vertical-align: middle;
+    align-items: center;
+    text-align: center;
+    font-family: 'New Rodin';
+    font-size: 2rem;
+}
+
+.team-score > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-initials {
+    font-size: 0.85rem;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    width: 5%;
+}
+
+.team-name {
+    font-size: 0.95rem;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    width: 85%;
+}
+
+.score {
+    display: flex;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    width: 10%;
+    font-size: 1.5rem;
+    background: white;
+    color: black;
+    height: 100%;
+}
+
+#T1SW, #T2SW {
+    display: flex;
+    padding-top: 1vh;
+}
+
+#center-logo {
+    height: 5.5vh;
+    width: 2vw;
+    max-width: 75px;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background-color: #202020;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'New Rodin';
+    position: relative;
+    display: flex;
+}
+
+#Crazy8-svg {
+    position: absolute;
+    max-height: 80%;
+}
+
+#info-container {
+    position: absolute;
+    width: 4vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#info-container > div {
+    font-family: 'New Rodin';
+    color: white;
+    background-color: #202020;
+    font-size: 0.6rem;
+    white-space: nowrap;
+    height: 50%;
+}
+
+.set-wins {
+    height: 1vh;
+    width: var(--board_width);
+    display: flex;
+    flex-direction: row;
+}
+
+.show {
+    opacity: 1;
+    transition: all 0.75s ease;
+}
+
+.text-fade {
+    color: rgba(0, 0, 0, 0);
+    transition: all 0.75s ease;
+}
+
+.fade {
+    opacity: 0;
+    transition: all 0.75s ease;
+}
