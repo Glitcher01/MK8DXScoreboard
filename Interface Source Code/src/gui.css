@@ -1,0 +1,76 @@
+:root {
+    --text1: #4F4F4F;
+    --text2: black;
+    --back1: #1F1F1F;
+    --back2: white;
+}
+
+body {
+    background-color: 101010;
+}
+
+input[type='text'], input[type='number'] {
+    background-color: #1F1F1F;
+    border: none;
+    color: white;
+    width: 33vw;
+    margin: 1vh;
+}
+
+button {
+    background-color: #1F1F1F;
+    border: none;
+    color: white;
+    transition: 0.3s;
+}
+
+#swapRegion {
+    width: 10vw;
+}
+
+#updateRegion {
+    width: auto;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.T1, .T2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.T1 > h3 {
+    color: #de1b22;
+}
+
+.T2 > h3 {
+    color: #3363ff;
+}
+
+#bestOf {
+    display: flex;
+    flex-direction: row;
+}
+
+.match-info > div {
+    justify-content: center;
+    text-align: center;
+}
+
+#first_to {
+    background-color: white;
+    color: black;
+    transition: 0.3s;
+    border-radius: 20%;
+    margin-left: 0.5%;
+}

@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='gui.css'>
+        <script defer src='gui.js'></script>
+    </head>
+    <body>
+        <div class='container'>
+            <div class="T1">
+                <h3>Team 1</h3>
+                <input id='T1I' type="text" maxlength='3' title="Team 1's Initials" placeholder="Team 1's Initials">
+                <input id='T1N' type="text" maxlength='30' title="Team 1's Name" placeholder="Team 1's Name">
+                <input id='T1P' type="number" min='0' title="Points for Team 1" placeholder="Points for Team 1">
+                <input id='T1S' type="number" min='0' title="Set Wins for Team 1" placeholder="Set Wins for Team 1">
+            </div>
+            <div class="SWAP">
+                <button id="swapRegion">Swap Teams</button>
+            </div>
+            <div class="T2">
+                <h3>Team 2</h3>
+                <input id='T2I' type="text" maxlength='3' title="Team 2's Initials" placeholder="Team 2's Initials">
+                <input id='T2N' type="text" maxlength='30' title="Team 2's Name" placeholder="Team 2's Name">
+                <input id='T2P' type="number" min='0' step='1' title="Points for Team 2" placeholder="Points for Team 2">
+                <input id='T2S' type="number" min='0' step='1' title="Set Wins for Team 2" placeholder="Set Wins for Team 2">
+            </div>
+        </div>
+        <div class="match-info">
+            <p style="text-align: center; color: white">Match Information: </p>
+            <div id="bestOf">
+                <div id='first_to'>First to</div>
+                <input id="bestOfNum" type="number" min="0" step="1" placeholder="3" value="3">
+            </div>
+            <div>
+                <input id='SN' type="number" min="0" step='1' title="Set #" placeholder="Set #">
+                <input id='RN' type="number" min="0" step='1' title="Race #" placeholder="Race #">
+            </div>
+        <div>
+        <button id='updateRegion'>UPDATE</button>
+    </body>
+</html>
