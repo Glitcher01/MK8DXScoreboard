@@ -62,7 +62,7 @@ async function getData(scInfo) {
 
         T2Init.textContent = scInfo['T2Init']; 
         T2Name.textContent = scInfo['T2Name'];
-        T2Points.textContent != scInfo['T2Points'];
+        T2Points.textContent = scInfo['T2Points'];
 
         updateSets(setsRequired);
         updateInfo([0, 0]);
@@ -70,20 +70,11 @@ async function getData(scInfo) {
     }
     else {
         if (T1Init.textContent != scInfo['T1Init'] || T1Name.textContent != scInfo['T1Name'] || T1Points.textContent != scInfo['T1Points']) {
-            if (scInfo['T1Points'] == '') {
-                updateTeams([T1Init, T1Name, T1Points], [scInfo['T1Init'], scInfo['T1Name'], 0]);
-            }
-            else {
-                updateTeams([T1Init, T1Name, T1Points], [scInfo['T1Init'], scInfo['T1Name'], scInfo['T1Points']]);
-            }
+            updateTeams([T1Init, T1Name, T1Points], [scInfo['T1Init'], scInfo['T1Name'], scInfo['T1Points']]);
         }
         if(T2Init.textContent != scInfo['T2Init'] || T2Name.textContent != scInfo['T2Name'] || T2Points.textContent != scInfo['T2Points']) {
-            if(scInfo['T2Points'] == '') {
-                updateTeams([T2Init, T2Name, T2Points], [scInfo['T2Init'], scInfo['T2Name'], 0]);
-            }
             updateTeams([T2Init, T2Name, T2Points], [scInfo['T2Init'], scInfo['T2Name'], scInfo['T2Points']]);
         }
-
         if (setsRequired != scInfo['TotalSets'] || t1_data[0] != parseInt(scInfo['T1Sets']) || t2_data[0] != parseInt(scInfo['T2Sets'])) {
             updateSets([scInfo['TotalSets'], scInfo['T1Sets'], scInfo['T2Sets']])
         }
