@@ -5,6 +5,7 @@
 
 :root {
     --board_width: 30vw;
+    --board_height: 6vh;
 }
 
 .board-container {
@@ -32,7 +33,7 @@
 }
 
 #scoreboard-left {
-    height: 5.5vh;
+    height: var(--board_height);
     width: var(--board_width);
     position: relative;
     align-items: center;
@@ -52,7 +53,7 @@
 }
 
 #scoreboard-right {
-    height: 5.5vh;
+    height: var(--board_height);
     width: var(--board_width);
     position: relative;
     align-items: center;
@@ -117,7 +118,7 @@
 }
 
 #center-logo {
-    height: 5.5vh;
+    height: var(--board_height);
     width: 2vw;
     max-width: 75px;
     padding-left: 1vw;
