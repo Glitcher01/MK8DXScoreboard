@@ -4,8 +4,11 @@
 }
 
 :root {
-    --board_width: 30vw;
-    --board_height: 6vh;
+    --scale_factor: 1;
+    --size_control: calc(var(--scale_factor)*30);
+    --board_width: calc(var(--size_control)*1vw);
+    --board_height:calc(var(--size_control)*0.2vh);
+    --font_factor:calc(var(--scale_factor)*1);
 }
 
 .board-container {
@@ -78,7 +81,7 @@
     align-items: center;
     text-align: center;
     font-family: 'New Rodin';
-    font-size: 2rem;
+    font-size: calc(var(--font_factor)*2rem);
 }
 
 .team-score > * {
@@ -88,14 +91,14 @@
 }
 
 .team-initials {
-    font-size: 0.85rem;
+    font-size: calc(var(--font_factor)*.85rem);
     padding-left: 2.5%;
     padding-right: 2.5%;
     width: 5%;
 }
 
 .team-name {
-    font-size: 0.95rem;
+    font-size: calc(var(--font_factor)*.95rem);
     padding-left: 2.5%;
     padding-right: 2.5%;
     width: 85%;
@@ -106,7 +109,7 @@
     padding-left: 2.5%;
     padding-right: 2.5%;
     width: 10%;
-    font-size: 1.5rem;
+    font-size: calc(var(--font_factor)*1.5rem);
     background: white;
     color: black;
     height: 100%;
@@ -119,7 +122,7 @@
 
 #center-logo {
     height: var(--board_height);
-    width: 2vw;
+    width: calc(var(--board_width)/8);
     max-width: 75px;
     padding-left: 1vw;
     padding-right: 1vw;
@@ -149,7 +152,7 @@
     font-family: 'New Rodin';
     color: white;
     background-color: #202020;
-    font-size: 0.6rem;
+    font-size: calc(var(--font_factor)*0.6rem);
     white-space: nowrap;
     height: 50%;
 }
