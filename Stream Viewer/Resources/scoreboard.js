@@ -12,7 +12,7 @@ function init() {
 		const scInfo = await getInfo();
 		getData(scInfo);
 	}
-
+    
 	mainLoop();
 	setInterval( () => { mainLoop(); }, 500); // Routinely checks for any updates to JSON file
 }
@@ -43,7 +43,7 @@ function changeValue(element, value, startup) {
       }, 500);
     element.classList.remove('show');
 }
-
+//Not sure if this needs to be async, Leaving the way it is for now
 async function getData(scInfo) {
     let T1Init = document.getElementById('IL');
     let T1Name = document.getElementById('NL');
@@ -59,21 +59,25 @@ async function getData(scInfo) {
         T1Init.textContent = scInfo['T1Init'];
         T1Name.textContent = scInfo['T1Name'];
         T1Points.textContent = scInfo['T1Points'];
+        T1Points.setAttribute("ScoreTo",scInfo['T1Points'])
 
         T2Init.textContent = scInfo['T2Init']; 
         T2Name.textContent = scInfo['T2Name'];
         T2Points.textContent = scInfo['T2Points'];
+        T2Points.setAttribute("ScoreTo",scInfo['T2Points'])
 
         updateSets(setsRequired);
         updateInfo([0, 0]);
         startup = false;
     }
     else {
-        if (T1Init.textContent != scInfo['T1Init'] || T1Name.textContent != scInfo['T1Name'] || T1Points.textContent != scInfo['T1Points']) {
-            updateTeams([T1Init, T1Name, T1Points], [scInfo['T1Init'], scInfo['T1Name'], scInfo['T1Points']]);
+        if (T1Init.textContent != scInfo['T1Init'] || T1Name.textContent != scInfo['T1Name'] || T1Points.getAttribute("ScoreTo") != scInfo['T1Points']) {
+                updateScore(scInfo['T1Points'],1000,T1Points)
+                updateTeams([T1Init, T1Name], [scInfo['T1Init'], scInfo['T1Name']]);
         }
-        if(T2Init.textContent != scInfo['T2Init'] || T2Name.textContent != scInfo['T2Name'] || T2Points.textContent != scInfo['T2Points']) {
-            updateTeams([T2Init, T2Name, T2Points], [scInfo['T2Init'], scInfo['T2Name'], scInfo['T2Points']]);
+        if(T2Init.textContent != scInfo['T2Init'] || T2Name.textContent != scInfo['T2Name'] || T2Points.getAttribute("ScoreTo") != scInfo['T2Points']) {
+                updateScore(scInfo['T2Points'],1000,T2Points)
+                updateTeams([T2Init, T2Name], [scInfo['T2Init'], scInfo['T2Name']]);
         }
         if (setsRequired != scInfo['TotalSets'] || t1_data[0] != parseInt(scInfo['T1Sets']) || t2_data[0] != parseInt(scInfo['T2Sets'])) {
             updateSets([scInfo['TotalSets'], scInfo['T1Sets'], scInfo['T2Sets']])
@@ -94,6 +98,21 @@ function updateTeams(elements, data) {
             changeValue(elements[i], data[i]);
         }
     }
+}
+//Updates Score through animation
+async function updateScore(score, duration, element) {
+    let startTime = null;
+    console.log(element.textContent)
+    let start = Number(element.textContent + "");
+    element.setAttribute("ScoreTo",score);
+    duration = Number(duration);
+    const step = (timestamp) => {
+        if(startTime == null) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        element.textContent = Math.floor((element.getAttribute("ScoreTo") - start) * progress) + start;
+        if (progress < 1) window.requestAnimationFrame(step);
+    };
+    window.requestAnimationFrame(step);
 }
 
 function updateSets(scInfo) {
