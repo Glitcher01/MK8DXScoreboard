@@ -4,11 +4,10 @@
 }
 
 :root {
-    --scale_factor: 1;
-    --size_control: calc(var(--scale_factor)*30);
-    --board_width: calc(var(--size_control)*1vw);
-    --board_height:calc(var(--size_control)*0.2vh);
-    --font_factor:calc(var(--scale_factor)*1);
+    --scale_factor: 35;
+    --board_width: calc(var(--scale_factor)*1vw);
+    --board_height:calc(var(--scale_factor)*0.2vh);
+    --font_factor: 1;
 }
 
 .board-container {
