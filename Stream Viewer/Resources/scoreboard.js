@@ -137,17 +137,33 @@ function updateSets(scInfo) {
         for(let i = 0; i < setsRequired; i++) {
             let T1SNum = document.getElementById('T1S' + i);
             let T2SNum = document.getElementById('T2S' + i);
-            if (i < t1_data[0] && T1SNum.style.backgroundColor == '#202020') {
-                fadeBackground(T1SNum, '#de1b22');
+            if (i < t1_data[0] && T1SNum.style.backgroundColor == 'transparent') {
+                T1SNum.classList.add('fade');
+                setTimeout(() => {
+                    T1SNum.style.backgroundColor = '#de1b22';
+                    T1SNum.classList.remove('fade');
+                    T1SNum.classList.add('show');
+                }, 500);
+                T1SNum.classList.remove('show');
             }
             else if (i >= t1_data[0] && T1SNum.style.backgroundColor != 'transparent') {
-                fadeBackground(T1SNum, '#202020');
+                T1SNum.classList.add('fade');
+                T1SNum.style.backgroundColor = 'transparent';
+                T1SNum.classList.remove('fade');
             }
             if (i > setsRequired - t2_data[0] - 1 && T2SNum.style.backgroundColor == 'transparent') {
-                fadeBackground(T2SNum, '#3363ff');
+                T2SNum.classList.add('fade');
+                setTimeout(() => {
+                    T2SNum.style.backgroundColor = '#3363ff';
+                    T2SNum.classList.remove('fade');
+                    T2SNum.classList.add('show');
+                }, 500);
+                T2SNum.classList.remove('show');
             }
             else if (i <= setsRequired - t2_data[0] - 1 && T2SNum.style.backgroundColor != 'transparent') {
-                fadeBackground(T2SNum, '#202020');
+                T2SNum.classList.add('fade');
+                T2SNum.style.backgroundColor = 'transparent';
+                T2SNum.classList.remove('fade');
             }
         }
     }
@@ -196,25 +212,6 @@ function updateInfo(matchInfo) {
     fitText('set-num');
     document.getElementById('race-num').textContent = 'Race ' + match_info[1];
     fitText('race-num');
-}
-
-function fadeBackground(element, fColor, duration=1000, steps=50) {
-    const fC = +fColor.replace('#', '0x');
-    const fParam = [fColor >> 16, fColor >> 8 & 0xff, fColor & 0xff];
-    const backgroundColor = +tohex(element.style.backgroundColor).replace('#', '0x');
-    const bParam = [backgroundColor >> 16, backgroundColor >> 8 & 0xff, backgroundColor & 0xff];
-    var i = 1;
-    const interval = setInterval(function() {
-        if (i > steps) {
-	    clearInterval(interval);
-	    return;
-	}
-	var rParam = [null, null, null];
-	for (let i = 0; i < rParam.length; i++) {
-	    rParam[i] = bParam[i] + (fParam[i] - bParam[i]) * (i / steps);
-	}
-	element.style.backgroundColor = '#' + (rParam[0] << 16) + (rParam[1] << 8) + (rParam[2] | 0xff);
-    }, (duration / steps));
 }
 
 function toHex(color) {
