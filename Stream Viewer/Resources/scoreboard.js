@@ -137,33 +137,17 @@ function updateSets(scInfo) {
         for(let i = 0; i < setsRequired; i++) {
             let T1SNum = document.getElementById('T1S' + i);
             let T2SNum = document.getElementById('T2S' + i);
-            if (i < t1_data[0] && T1SNum.style.backgroundColor == 'transparent') {
-                T1SNum.classList.add('fade');
-                setTimeout(() => {
-                    T1SNum.style.backgroundColor = '#de1b22';
-                    T1SNum.classList.remove('fade');
-                    T1SNum.classList.add('show');
-                }, 500);
-                T1SNum.classList.remove('show');
+            if (i < t1_data[0] && T1SNum.style.backgroundColor == '#202020') {
+                fadeBackground(T1SNum, '#de1b22');
             }
             else if (i >= t1_data[0] && T1SNum.style.backgroundColor != 'transparent') {
-                T1SNum.classList.add('fade');
-                T1SNum.style.backgroundColor = 'transparent';
-                T1SNum.classList.remove('fade');
+                fadeBackground(T1SNum, '#202020');
             }
             if (i > setsRequired - t2_data[0] - 1 && T2SNum.style.backgroundColor == 'transparent') {
-                T2SNum.classList.add('fade');
-                setTimeout(() => {
-                    T2SNum.style.backgroundColor = '#3363ff';
-                    T2SNum.classList.remove('fade');
-                    T2SNum.classList.add('show');
-                }, 500);
-                T2SNum.classList.remove('show');
+                fadeBackground(T2SNum, '#3363ff');
             }
             else if (i <= setsRequired - t2_data[0] - 1 && T2SNum.style.backgroundColor != 'transparent') {
-                T2SNum.classList.add('fade');
-                T2SNum.style.backgroundColor = 'transparent';
-                T2SNum.classList.remove('fade');
+                fadeBackground(T2SNum, '#202020');
             }
         }
     }
@@ -180,10 +164,16 @@ function updateSets(scInfo) {
             if (i < t1_data[0]) {
                 TS1 += 'background-color: #de1b22;';
             }
+	    else {
+	        TS1 += 'background-color: #202020;';
+	    }
     
             if (i > setsRequired - t2_data[0] - 1) {
                 TS2 += 'background-color: #3363ff;'
             }
+	    else {
+		TS2 += 'background-color: #202020;';
+	    }
             document.getElementById('T1SW').innerHTML += TS1 + "\'></div>";
             document.getElementById('T2SW').innerHTML += TS2 + "\'></div>";
         }
