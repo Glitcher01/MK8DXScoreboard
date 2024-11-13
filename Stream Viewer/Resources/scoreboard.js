@@ -214,6 +214,21 @@ function updateInfo(matchInfo) {
     fitText('race-num');
 }
 
+function fadeBackground(element, finalColor, duration=1000, steps=50) {
+    const cH = +finalColor.replace('#', '0x');
+    const cParam = [cH >> 16, cH >> 8 & 0xff, cH & 0xff];
+    const eH = +toHex(element.style.backgroundColor).replace('#', '0x');
+    const eParam = [eH >> 16, eH >> 8 & 0xff, eH & 0xff];
+    let step = 0;
+    const interval
+    let final = [null, null, null];
+    for (let i = 0; i < final.length; i++) {
+        final[i] = Math.floor(eParam[i] + (cParam[i] - eParam[i]) * 0.5);
+    }
+    finalC = '#' + ((final[0] << 16) + (final[1] << 8) + (final[2] | 0x00)).toString(16);
+    element.style.backgroundColor = finalC;
+}
+
 function toHex(color) {
     var parts = color.match(/^rgb\((\d+), \s*(\d+), \s*(\d+)\)/);
     delete(parts[0])
