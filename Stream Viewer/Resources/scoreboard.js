@@ -208,6 +208,35 @@ function updateInfo(matchInfo) {
     fitText('race-num');
 }
 
+function fadeBackground(element, fColor, duration=1000, steps=50) {
+    const fC = +fColor.replace('#', '0x');
+    const fParam = [fColor >> 16, fColor >> 8 & 0xff, fColor & 0xff];
+    const backgroundColor = +tohex(element.style.backgroundColor).replace('#', '0x');
+    const bParam = [backgroundColor >> 16, backgroundColor >> 8 & 0xff, backgroundColor & 0xff];
+    var i = 1;
+    const interval = setInterval(function() {
+        if (i > steps) {
+	    clearInterval(interval);
+	    return;
+	}
+	var rParam = [null, null, null];
+	for (let i = 0; i < rParam.length; i++) {
+	    rParam[i] = bParam[i] + (fParam[i] - bParam[i]) * (i / steps);
+	}
+	element.style.backgroundColor = '#' + (rParam[0] << 16) + (rParam[1] << 8) + (rParam[2] | 0xff);
+    }, (duration / steps));
+}
+
+function toHex(color) {
+    var parts = color.match(/^rgb\((\d+), \s*(\d+), \s*(\d+)\)/);
+    delete(parts[0])
+    for (var i = 1; i < 3; i++) {
+        parts[i] = parseInt(parts[i]).toString(16);
+        if (parts[i].length == 1) parts[i] = '0' + parts[i];
+    }
+    return '#' + parts.join('');
+}
+
 // Fixes font size to fit inside.
 function fitText(element) {
      // max font size in pixels
