@@ -212,35 +212,34 @@ function updateInfo(matchInfo) {
 function fitText(element) {
      // max font size in pixels
      const maxFontSize = 50;
-     // get the DOM output element by its selector
+     // get the DOM output element by its id
      let outputDiv = document.getElementById(element);
      // get element's width & height
      let width = outputDiv.clientWidth;
      let height = outputDiv.clientHeight;
-     // get content's width
+     // get content's width & height
      let contentWidth = outputDiv.scrollWidth;
      let contentHeight = outputDiv.scrollHeight;
      // get fontSize
      let fontSize = parseInt(window.getComputedStyle(outputDiv).getPropertyValue('font-size'));
      // if content's width is bigger then elements width - overflow
      if (contentWidth > width || contentHeight > height){
-         fontSize = Math.min(Math.ceil(fontSize * width/contentWidth), Math.ceil(fontSize * height/contentHeight));
-         fontSize =  fontSize > maxFontSize  ? fontSize = maxFontSize  : fontSize - 1;
+         fontSize = Math.min(fontSize * width/contentWidth, fontSize * height/contentHeight, maxFontSize);
          outputDiv.style.fontSize = fontSize+'px';
          console.log([width, contentWidth, height, contentHeight, fontSize]);
-     }else{
+     } else {
          // content is smaller then width... let's resize in 1 px until it fits 
          while (contentWidth === width && contentHeight === height && fontSize < maxFontSize){
-             fontSize = Math.ceil(fontSize) + 1;
-             fontSize = fontSize > maxFontSize  ? fontSize = maxFontSize  : fontSize;
-             outputDiv.style.fontSize = fontSize+'px';   
-             // update widths
+             fontSize = Math.min(Math.ceil(fontSize) + 1, maxFontSize);
+             outputDiv.style.fontSize = fontSize+'px';
+             // update widths & heights
              width = outputDiv.clientWidth;
              contentWidth = outputDiv.scrollWidth;
              height = outputDiv.clientHeight;
              contentHeight = outputDiv.scrollHeight;
              if (contentWidth > width || contentHeight > height){
-                 outputDiv.style.fontSize = fontSize-1+'px'; 
+		 fontSize = Math.min(fontSize * width/contentWidth, fontSize * height/contentHeight, maxFontSize);
+                 outputDiv.style.fontSize = fontSize+'px'; 
              }
          }
      }
