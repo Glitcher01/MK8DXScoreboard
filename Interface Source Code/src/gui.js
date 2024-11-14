@@ -47,11 +47,11 @@ function update() {
         T1Init: T1[0].value,
         T1Name: T1[1].value,
         T1Points: T1[2].value == '' ? '0' : T1[2].value,
-        T1Sets: T1[3].value,
+        T1Sets: T1[3].value == '' ? '0' : T1[3].value,
         T2Init: T2[0].value,
         T2Name: T2[1].value,
         T2Points: T2[2].value == '' ? '0' : T2[2].value,
-        T2Sets: T2[3].value,
+        T2Sets: T2[3].value == '' ? '0' : T2[3].value,
         TotalSets: matches.value,
         SetNum: document.getElementById('SN').value == '' ? '1' : document.getElementById('SN').value,
         RaceNum: document.getElementById('RN').value == '' ? '1' : document.getElementById('RN').value
