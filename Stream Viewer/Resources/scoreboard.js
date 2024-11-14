@@ -137,33 +137,17 @@ function updateSets(scInfo) {
         for(let i = 0; i < setsRequired; i++) {
             let T1SNum = document.getElementById('T1S' + i);
             let T2SNum = document.getElementById('T2S' + i);
-            if (i < t1_data[0] && T1SNum.style.backgroundColor == 'transparent') {
-                T1SNum.classList.add('fade');
-                setTimeout(() => {
-                    T1SNum.style.backgroundColor = '#de1b22';
-                    T1SNum.classList.remove('fade');
-                    T1SNum.classList.add('show');
-                }, 500);
-                T1SNum.classList.remove('show');
+            if (i < t1_data[0] && T1SNum.style.backgroundColor == '#202020') {
+	        fadeBackground(T1SNum, '#de1b22', 500, 10);
             }
-            else if (i >= t1_data[0] && T1SNum.style.backgroundColor != 'transparent') {
-                T1SNum.classList.add('fade');
-                T1SNum.style.backgroundColor = 'transparent';
-                T1SNum.classList.remove('fade');
+            else if (i >= t1_data[0] && T1SNum.style.backgroundColor != '#202020') {
+                fadeBackground(T1SNum, '#202020', 500, 10);
             }
-            if (i > setsRequired - t2_data[0] - 1 && T2SNum.style.backgroundColor == 'transparent') {
-                T2SNum.classList.add('fade');
-                setTimeout(() => {
-                    T2SNum.style.backgroundColor = '#3363ff';
-                    T2SNum.classList.remove('fade');
-                    T2SNum.classList.add('show');
-                }, 500);
-                T2SNum.classList.remove('show');
+            if (i > setsRequired - t2_data[0] - 1 && T2SNum.style.backgroundColor == '#202020') {
+                fadeBackground(T2SNum, '#3363ff', 500, 10);
             }
-            else if (i <= setsRequired - t2_data[0] - 1 && T2SNum.style.backgroundColor != 'transparent') {
-                T2SNum.classList.add('fade');
-                T2SNum.style.backgroundColor = 'transparent';
-                T2SNum.classList.remove('fade');
+            else if (i <= setsRequired - t2_data[0] - 1 && T2SNum.style.backgroundColor != '#202020') {
+                fadeBackground(T1SNum, '#202020', 500, 10);
             }
         }
     }
@@ -214,19 +198,35 @@ function updateInfo(matchInfo) {
     fitText('race-num');
 }
 
-function fadeBackground(element, finalColor, duration=1000, steps=50) {
+function fadeBackground(element, finalColor, duration=500, steps=10) {
     const cH = +finalColor.replace('#', '0x');
     const cParam = [cH >> 16, cH >> 8 & 0xff, cH & 0xff];
-    const eH = +toHex(element.style.backgroundColor).replace('#', '0x');
-    const eParam = [eH >> 16, eH >> 8 & 0xff, eH & 0xff];
-    let step = 0;
-    const interval
-    let final = [null, null, null];
-    for (let i = 0; i < final.length; i++) {
-        final[i] = Math.floor(eParam[i] + (cParam[i] - eParam[i]) * 0.5);
+    console.log(cParam);
+    var eH, eParam;
+    if (element.style.backgroundColor) {
+        eH = +toHex(element.style.backgroundColor).replace('#', '0x');
     }
-    finalC = '#' + ((final[0] << 16) + (final[1] << 8) + (final[2] | 0x00)).toString(16);
-    element.style.backgroundColor = finalC;
+    else {
+        eH = +('0xffffff');
+    }
+    eParam = [eH >> 16, eH >> 8 & 0xff, eH & 0xff];
+    let step = 0;
+    const interval = setInterval(function() {
+        if (step > steps) {
+            clearInterval(interval);
+            return;
+        }
+        let finalC = '#'
+        for (let i = 0; i < eParam.length; i++) {
+            let current = Math.floor(eParam[i] + (cParam[i] - eParam[i]) * (step / steps));
+            if(current.toString(16).length == 1) {
+                finalC += '0';
+            }
+            finalC += current.toString(16);
+        }
+        element.style.backgroundColor = finalC;
+        step++;
+    }, duration / steps);
 }
 
 function toHex(color) {
