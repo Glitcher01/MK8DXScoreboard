@@ -137,17 +137,18 @@ function updateSets(scInfo) {
         for(let i = 0; i < setsRequired; i++) {
             let T1SNum = document.getElementById('T1S' + i);
             let T2SNum = document.getElementById('T2S' + i);
-            if (i < t1_data[0] && T1SNum.style.backgroundColor == '#202020') {
-	        fadeBackground(T1SNum, '#de1b22', 500, 10);
+            console.log([i, t1_data[0], toHex(T1SNum.style.backgroundColor)]);
+            if (i < t1_data[0] && (toHex(T1SNum.style.backgroundColor) == '#202020' || T1SNum.style.backgroundColor == '#202020')) {
+	            fadeBackground(T1SNum, '#de1b22', 500, 10);
             }
-            else if (i >= t1_data[0] && T1SNum.style.backgroundColor != '#202020') {
+            else if (i >= t1_data[0] && (toHex(T1SNum.style.backgroundColor) == '#de1b22' || T1SNum.style.backgroundColor == '#de1b22')) {
                 fadeBackground(T1SNum, '#202020', 500, 10);
             }
-            if (i > setsRequired - t2_data[0] - 1 && T2SNum.style.backgroundColor == '#202020') {
+            if (i > setsRequired - t2_data[0] - 1 && (toHex(T2SNum.style.backgroundColor) == '#202020' || T2SNum.style.backgroundColor == '#202020')) {
                 fadeBackground(T2SNum, '#3363ff', 500, 10);
             }
-            else if (i <= setsRequired - t2_data[0] - 1 && T2SNum.style.backgroundColor != '#202020') {
-                fadeBackground(T1SNum, '#202020', 500, 10);
+            else if (i <= setsRequired - t2_data[0] - 1 && (toHex(T2SNum.style.backgroundColor) == '#3363ff' || T2SNum.style.backgroundColor == '#3363ff')) {
+                fadeBackground(T2SNum, '#202020', 500, 10);
             }
         }
     }
@@ -232,9 +233,10 @@ function fadeBackground(element, finalColor, duration=500, steps=10) {
 function toHex(color) {
     var parts = color.match(/^rgb\((\d+), \s*(\d+), \s*(\d+)\)/);
     delete(parts[0])
-    for (var i = 1; i < 3; i++) {
+    for (var i = 1; i < 4; i++) {
         parts[i] = parseInt(parts[i]).toString(16);
         if (parts[i].length == 1) parts[i] = '0' + parts[i];
+        console.log(parts[i]);
     }
     return '#' + parts.join('');
 }
