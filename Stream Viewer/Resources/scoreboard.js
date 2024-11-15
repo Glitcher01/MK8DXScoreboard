@@ -108,11 +108,15 @@ async function updateScore(score, duration, element) {
     duration = Number(duration);
     const step = (timestamp) => {
         if(startTime == null) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        element.textContent = Math.floor((element.getAttribute("ScoreTo") - start) * progress) + start;
+        const linearProgress = Math.min((timestamp - startTime) / duration, 1);
+        element.textContent = Math.floor((element.getAttribute("ScoreTo") - start) * sCurveFunction(linearProgress)) + start;
         if (progress < 1) window.requestAnimationFrame(step);
     };
     window.requestAnimationFrame(step);
+}
+
+function sCurveFunction(x) {
+    return 0.5 * (Math.sin(x * Math.PI - Math.PI / 2) + 1);
 }
 
 function updateSets(scInfo) {
@@ -194,8 +198,8 @@ function updateInfo(matchInfo) {
     match_info[0] = parseInt(matchInfo[0]) == NaN ? 0 : parseInt(matchInfo[0]);
     match_info[1] = parseInt(matchInfo[1]) == NaN ? 0 : parseInt(matchInfo[1]);
     document.getElementById('set-num').textContent = 'Set ' + match_info[0];
-    fitText('set-num');
     document.getElementById('race-num').textContent = 'Race ' + match_info[1];
+    fitText('set-num');
     fitText('race-num');
 }
 
@@ -243,37 +247,37 @@ function toHex(color) {
 
 // Fixes font size to fit inside.
 function fitText(element) {
-     // max font size in pixels
-     const maxFontSize = 50;
-     // get the DOM output element by its id
-     let outputDiv = document.getElementById(element);
-     // get element's width & height
-     let width = outputDiv.clientWidth;
-     let height = outputDiv.clientHeight;
-     // get content's width & height
-     let contentWidth = outputDiv.scrollWidth;
-     let contentHeight = outputDiv.scrollHeight;
-     // get fontSize
-     let fontSize = parseInt(window.getComputedStyle(outputDiv).getPropertyValue('font-size'));
-     // if content's width is bigger then elements width - overflow
-     if (contentWidth > width || contentHeight > height){
-         fontSize = Math.min(fontSize * width/contentWidth, fontSize * height/contentHeight, maxFontSize);
-         outputDiv.style.fontSize = fontSize+'px';
-         console.log([width, contentWidth, height, contentHeight, fontSize]);
-     } else {
-         // content is smaller then width... let's resize in 1 px until it fits 
-         while (contentWidth === width && contentHeight === height && fontSize < maxFontSize){
-             fontSize = Math.min(Math.ceil(fontSize) + 1, maxFontSize);
-             outputDiv.style.fontSize = fontSize+'px';
-             // update widths & heights
-             width = outputDiv.clientWidth;
-             contentWidth = outputDiv.scrollWidth;
-             height = outputDiv.clientHeight;
-             contentHeight = outputDiv.scrollHeight;
-             if (contentWidth > width || contentHeight > height){
-		 fontSize = Math.min(fontSize * width/contentWidth, fontSize * height/contentHeight, maxFontSize);
-                 outputDiv.style.fontSize = fontSize+'px'; 
-             }
-         }
-     }
+    // max font size in pixels
+    const maxFontSize = 50;
+    // get the DOM output element by its id
+    let outputDiv = document.getElementById(element);
+    // get element's width & height
+    let width = outputDiv.clientWidth;
+    let height = outputDiv.clientHeight;
+    // get content's width & height
+    let contentWidth = outputDiv.scrollWidth;
+    let contentHeight = outputDiv.scrollHeight;
+    // get fontSize
+    let fontSize = parseInt(window.getComputedStyle(outputDiv).getPropertyValue('font-size'));
+    // if content's width is bigger then elements width - overflow
+    if (contentWidth > width || contentHeight > height){
+        fontSize = Math.min(fontSize * width/contentWidth, fontSize * height/contentHeight, maxFontSize);
+        outputDiv.style.fontSize = fontSize+'px';
+        console.log([width, contentWidth, height, contentHeight, fontSize]);
+    } else {
+        // content is smaller then width... let's resize in 1 px until it fits 
+        while (contentWidth === width && contentHeight === height && fontSize < maxFontSize){
+            fontSize = Math.min(Math.ceil(fontSize) + 1, maxFontSize);
+            outputDiv.style.fontSize = fontSize+'px';
+            // update widths & heights
+            width = outputDiv.clientWidth;
+            contentWidth = outputDiv.scrollWidth;
+            height = outputDiv.clientHeight;
+            contentHeight = outputDiv.scrollHeight;
+            if (contentWidth > width || contentHeight > height){
+            fontSize = Math.min(fontSize * width/contentWidth, fontSize * height/contentHeight, maxFontSize);
+            outputDiv.style.fontSize = fontSize+'px'; 
+            }
+        }
+    }
 }
