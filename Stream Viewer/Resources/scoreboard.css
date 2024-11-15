@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'New Rodin';
-    src: url('FOT-NewRodin Pro B.otf');
+    font-family: 'Bai Jamjuree';
+    src: url('BaiJamjuree-Regular.ttf');
 }
 
 :root {
@@ -79,7 +79,7 @@
     vertical-align: middle;
     align-items: center;
     text-align: center;
-    font-family: 'New Rodin';
+    font-family: 'Bai Jamjuree';
     font-size: calc(var(--font_factor)*2rem);
 }
 
@@ -130,7 +130,7 @@
     justify-content: center;
     align-items: center;
     color: white;
-    font-family: 'New Rodin';
+    font-family: 'Bai Jamjuree';
     position: relative;
     display: flex;
 }
@@ -149,7 +149,7 @@
 }
 
 #info-container > div {
-    font-family: 'New Rodin';
+    font-family: 'Bai Jamjuree';
     color: white;
     background-color: #202020;
     font-size: calc(var(--font_factor)*0.6rem);
